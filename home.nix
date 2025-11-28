@@ -15,6 +15,7 @@ in
     pkgs.nerd-fonts.fira-code
     pkgs.lua-language-server
     pkgs.stylua
+    pkgs.fish
   ];
 
   home.sessionVariables = {
@@ -22,7 +23,10 @@ in
   };
 
   programs.home-manager.enable = true;
-  programs.fish = {
+  # programs.fish = {
+  #   enable = true;
+  # };
+  programs.starship = {
     enable = true;
   };
   programs.neovim = {
@@ -49,6 +53,7 @@ in
 
   xdg.configFile = {
     nvim.source = "${dotfiles}/nvim";
+    fish.source = "${dotfiles}/fish";
   };
 
 }
