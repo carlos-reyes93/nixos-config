@@ -6,29 +6,35 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, nixos-wsl, home-manager, ... }@inputs: 
-  let
-     system = "x86_64-linux";
-     lib = nixpkgs.lib;
-     pkgs = nixpkgs.legacyPackages.${system};
-  in
-  {
-    nixosConfigurations = {
-      weasel = lib.nixosSystem {
-        specialArgs = { inherit inputs; };
-        inherit system;
-        modules = [
-          nixos-wsl.nixosModules.default
-	  ./hosts/weasel/default.nix
-        ];
+  outputs =
+    {
+      self,
+      nixpkgs,
+      nixos-wsl,
+      home-manager,
+      ...
+    }@inputs:
+    let
+      system = "x86_64-linux";
+      lib = nixpkgs.lib;
+      pkgs = nixpkgs.legacyPackages.${system};
+    in
+    {
+      nixosConfigurations = {
+        weasel = lib.nixosSystem {
+          specialArgs = { inherit inputs; };
+          inherit system;
+          modules = [
+            nixos-wsl.nixosModules.default
+            ./hosts/weasel/default.nix
+          ];
+        };
+      };
+      homeConfigurations = {
+        charly = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          modules = [ ./modules/user/home.nix ];
+        };
       };
     };
-    homeConfigurations = {
-      charly = home-manager.lib.homeManagerConfiguration {
-	inherit pkgs;
-	modules = [ ./home.nix ];
-      };
-    };
-  };
 }
-
