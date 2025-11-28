@@ -19,13 +19,11 @@ in
   ];
 
   home.sessionVariables = {
-    # EDITOR = "emacs";
+    EDITOR = "nvim";
   };
 
   programs.home-manager.enable = true;
-  # programs.fish = {
-  #   enable = true;
-  # };
+
   programs.starship = {
     enable = true;
   };
@@ -53,7 +51,8 @@ in
 
   xdg.configFile = {
     nvim.source = "${dotfiles}/nvim";
-    fish.source = "${dotfiles}/fish";
+    fish.source = "${dotfiles}/shell/fish";
+    "starship.toml".source = "${dotfiles}/shell/starship/starship.toml";
   };
 
 }
