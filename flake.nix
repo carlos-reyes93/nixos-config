@@ -33,7 +33,10 @@
       homeConfigurations = {
         charly = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
-          modules = [ ./modules/user/home.nix ];
+          modules = [
+            ./modules/home-manager/fetch-mutable-files.nix
+            ./modules/home-manager/home.nix
+          ];
         };
       };
     };

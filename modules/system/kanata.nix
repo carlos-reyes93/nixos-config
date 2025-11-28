@@ -1,8 +1,12 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 {
   options = {
-    kanata-sys.enable = 
-      lib.mkEnableOption = "enable Kanata system module";
+    kanata-sys.enable = lib.mkEnableOption "enable Kanata system module";
   };
   config = lb.mkIf config.kanata-sys.enable {
     services.kanata = {

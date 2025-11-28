@@ -1,12 +1,24 @@
-{ config, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
-  dotfiles = config.lib.file.mkOutOfStoreSymlink "/home/charly/dotfiles/";
+  dotfiles = config.lib.file.mkOutOfStoreSymlink config.home.mutableFile."dotfiles".path;
 in
 {
   # manage.
   home.username = "charly";
   home.homeDirectory = "/home/charly";
   home.enableNixpkgsReleaseCheck = false;
+  fetch-mutable-files.enable = true;
+  home.mutableFile = {
+    "dotfiles" = {
+      url = "https://github.com/carlos-reyes93/dotfiles.git";
+      type = "git";
+    };
+  };
 
   home.stateVersion = "25.11";
 
