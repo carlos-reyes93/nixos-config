@@ -8,6 +8,9 @@
     kanata-sys.enable = lib.mkEnableOption "enable Kanata system module";
   };
   config = lib.mkIf config.kanata-sys.enable {
+    environment.systemPackages = with pkgs; [kanata];
+    boot.kernelModules = ["uinput"];
+    hardware.uinput.enable = true;
     services.kanata = {
       enable = true;
       keyboards = {

@@ -8,6 +8,7 @@
   imports = [
     ./hardware-configuration.nix
     ./../../modules/system/kanata.nix
+    ./../../modules/system/hardware/nvidia
   ];
 
   boot.loader.systemd-boot.enable = true;
@@ -18,39 +19,6 @@
   environment.shells = with pkgs; [fish];
   users.defaultUserShell = pkgs.fish;
   programs.fish.enable = true;
-  kanata-sys.enable = true;
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.kernelModules = ["uinput"];
-  boot.initrd.kernelModules = [
-    "nvidia"
-    "i915"
-    "nvidia_modeset"
-    "nvidia_drm"
-  ];
-  boot.extraModulePackages = [config.boot.kernelPackages.nvidia_x11];
-  boot.kernelParams = [
-    "ibt=off"
-  ];
-  hardware.uinput.enable = true;
-  hardware.graphics = {
-    enable = true;
-  };
-
-  services.xserver.videoDrivers = ["nvidia"];
-
-  hardware.nvidia = {
-    modesetting.enable = true;
-
-    powerManagement.enable = false;
-
-    powerManagement.finegrained = false;
-
-    open = true;
-
-    nvidiaSettings = true;
-
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
-  };
   users.groups.uinput = {};
 
   networking.hostName = "nixos";
@@ -79,13 +47,11 @@
   environment.systemPackages = with pkgs; [
     git
     vim
-    gcc
     wget
     foot
     kitty
     waybar
     discord
-    kanata
     wofi
     hyprpaper
     inputs.nix-nvim.packages.${stdenv.hostPlatform.system}.nvim
@@ -100,4 +66,6 @@
     "nix-command"
     "flakes"
   ];
+  kanata-sys.enable = true;
+  nvidia-drivers.enable = true;
 }

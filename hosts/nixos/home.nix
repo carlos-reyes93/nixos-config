@@ -56,5 +56,6 @@ in {
     nvim.source = "${nix-nvim}";
     fish.source = "${dotfiles}/shell/fish";
     "starship.toml".source = "${dotfiles}/shell/starship/starship.toml";
+    foot.source = "${dotfiles}/programs/foot";
   };
 }
