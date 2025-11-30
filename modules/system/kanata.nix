@@ -3,17 +3,16 @@
   lib,
   pkgs,
   ...
-}:
-{
+}: {
   options = {
     kanata-sys.enable = lib.mkEnableOption "enable Kanata system module";
   };
-  config = lb.mkIf config.kanata-sys.enable {
+  config = lib.mkIf config.kanata-sys.enable {
     services.kanata = {
       enable = true;
       keyboards = {
         qwerty = {
-          devices = [ ];
+          devices = [];
           extraDefCfg = "process-unmapped-keys yes";
           config = ''
             				(defsrc
@@ -32,7 +31,7 @@
             )
 
             (deftemplate charmod (char mod)
-              (switch 
+              (switch
                 ((key-timing $streak-count less-than $streak-time)) $char break
                 () (tap-hold-release-timeout $tap-timeout $hold-timeout $char $mod $char) break
               )
@@ -80,7 +79,7 @@
               k (t! charmod k rsft)
               l (t! charmod l lalt)
               ; (t! charmod ; rmet)
-              z (t! charmod z lctl) 
+              z (t! charmod z lctl)
               x (chord mbl x)
               c (chord mbl c)
               v (t! charmod v (layer-while-held fumbol))
@@ -176,11 +175,9 @@
               . (chord fbr .)
               / (t! charmod \ lctl)
             )
-            			'';
+          '';
         };
       };
     };
-
   };
-
 }

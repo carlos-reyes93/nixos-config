@@ -4,40 +4,52 @@
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
     home-manager.url = "github:nix-community/home-manager/master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    nix-nvim.url = "github:carlos-reyes93/nix-nvim";
   };
 
-  outputs =
-    {
-      self,
-      nixpkgs,
-      nixos-wsl,
-      home-manager,
-      ...
-    }@inputs:
-    let
-      system = "x86_64-linux";
-      lib = nixpkgs.lib;
-      pkgs = nixpkgs.legacyPackages.${system};
-    in
-    {
-      nixosConfigurations = {
-        weasel = lib.nixosSystem {
-          specialArgs = { inherit inputs; };
-          inherit system;
-          modules = [
-            nixos-wsl.nixosModules.default
-            ./hosts/weasel/default.nix
-          ];
-        };
+  outputs = {
+    self,
+    nixpkgs,
+    nixos-wsl,
+    home-manager,
+    ...
+  } @ inputs: let
+    system = "x86_64-linux";
+    lib = nixpkgs.lib;
+    pkgs = nixpkgs.legacyPackages.${system};
+  in {
+    nixosConfigurations = {
+      weasel = lib.nixosSystem {
+        specialArgs = {inherit inputs;};
+        inherit system;
+        modules = [
+          nixos-wsl.nixosModules.default
+          ./hosts/weasel/default.nix
+        ];
       };
-      homeConfigurations = {
-        charly = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          modules = [
-            ./modules/home-manager/fetch-mutable-files.nix
-            ./modules/home-manager/home.nix
-          ];
-        };
+      nixos = lib.nixosSystem {
+        specialArgs = {inherit inputs;};
+        inherit system;
+        modules = [
+          ./hosts/nixos/default.nix
+        ];
       };
     };
+    homeConfigurations = {
+      "charly@weasel" = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        modules = [
+          ./modules/home-manager/fetch-mutable-files.nix
+          ./hosts/weasel/home.nix
+        ];
+      };
+      "charly@nixos" = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        modules = [
+          ./modules/home-manager/fetch-mutable-files.nix
+          ./hosts/nixos/home.nix
+        ];
+      };
+    };
+  };
 }

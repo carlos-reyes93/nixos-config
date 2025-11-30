@@ -105,7 +105,7 @@ in
               let
                 inherit (value) type;
                 path = lib.escapeShellArg value.path;
-                url = lib.escapeURL value.url;
+                url = value.url;
               in
               ''
                 ${lib.optionalString (type == "git") "[ -d ${path} ] || ${git} clone ${url} ${path}"}
