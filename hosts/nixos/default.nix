@@ -9,18 +9,14 @@
     ./hardware-configuration.nix
     ./../../modules/system/kanata.nix
     ./../../modules/system/hardware/nvidia
+    ./../../modules/user/shells/fish-foot.nix
   ];
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   services.getty.autologinUser = "charly";
   nixpkgs.config.allowUnfree = true;
-
-  environment.shells = with pkgs; [fish];
-  users.defaultUserShell = pkgs.fish;
-  programs.fish.enable = true;
   users.groups.uinput = {};
-
   networking.hostName = "nixos";
   networking.networkmanager.enable = true;
 
@@ -48,7 +44,6 @@
     git
     vim
     wget
-    foot
     kitty
     waybar
     discord
@@ -68,4 +63,5 @@
   ];
   kanata-sys.enable = true;
   nvidia-drivers.enable = true;
+  fish-foot.enable = true;
 }
