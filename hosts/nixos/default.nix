@@ -14,14 +14,14 @@
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  services.getty.autologinUser = "charly";
   nixpkgs.config.allowUnfree = true;
-  users.groups.uinput = {};
   networking.hostName = "nixos";
   networking.networkmanager.enable = true;
 
   time.timeZone = "America/Mexico_City";
 
+  services.getty.autologinUser = "charly";
+  users.groups.uinput = {};
   users.users.charly = {
     isNormalUser = true;
     extraGroups = [

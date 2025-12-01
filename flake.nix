@@ -17,10 +17,15 @@
     system = "x86_64-linux";
     lib = nixpkgs.lib;
     pkgs = nixpkgs.legacyPackages.${system};
+    nixosHostSettings = import ./profiles/nixos.nix;
+    weaselHostSettings = import ./profiles/weasel.nix.nix;
   in {
     nixosConfigurations = {
       weasel = lib.nixosSystem {
-        specialArgs = {inherit inputs;};
+        specialArgs = {
+          inherit inputs;
+          inherit weaselHostSettings;
+        };
         inherit system;
         modules = [
           nixos-wsl.nixosModules.default
@@ -28,7 +33,10 @@
         ];
       };
       nixos = lib.nixosSystem {
-        specialArgs = {inherit inputs;};
+        specialArgs = {
+          inherit inputs;
+          inherit nixosHostSettings;
+        };
         inherit system;
         modules = [
           ./hosts/nixos/default.nix
@@ -38,6 +46,9 @@
     homeConfigurations = {
       "charly@weasel" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
+        extraSpecialArgs = {
+          inherit weaselHostSettings;
+        };
         modules = [
           ./modules/home-manager/fetch-mutable-files.nix
           ./hosts/weasel/home.nix
@@ -45,6 +56,9 @@
       };
       "charly@nixos" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
+        extraSpecialArgs = {
+          inherit nixosHostSettings;
+        };
         modules = [
           ./modules/home-manager/fetch-mutable-files.nix
           ./hosts/nixos/home.nix
