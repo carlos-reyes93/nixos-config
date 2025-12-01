@@ -2,17 +2,14 @@
   config,
   lib,
   pkgs,
+  inputs,
   ...
-}:
-
-{
+}: {
   imports = [
     ./../../modules/system/nixos/wsl.nix
+    ./../../modules/system/kanata.nix
+    ./../../modules/user/shells/fish.nix
   ];
-
-  environment.shells = with pkgs; [ fish ];
-  users.defaultUserShell = pkgs.fish;
-  programs.fish.enable = true;
 
   environment.systemPackages = with pkgs; [
     git
@@ -21,13 +18,14 @@
     wget
     fish
     starship
-    neovim
-    nil
-    nixd
+    inputs.nix-nvim.packages.${stdenv.hostPlatform.system}.nvim
   ];
   system.stateVersion = "25.05";
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"
   ];
+  kanata-sys.enable = true;
+  nvidia-drivers.enable = false;
+  fish.enable = true;
 }

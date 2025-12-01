@@ -3,13 +3,14 @@
   inputs,
   lib,
   pkgs,
+  nixosHostSettings,
   ...
 }: {
   imports = [
     ./hardware-configuration.nix
     ./../../modules/system/kanata.nix
     ./../../modules/system/hardware/nvidia
-    ./../../modules/user/shells/fish-foot.nix
+    ./../../modules/user/shells/fish.nix
   ];
 
   boot.loader.systemd-boot.enable = true;
@@ -49,6 +50,7 @@
     discord
     wofi
     hyprpaper
+    foot
     inputs.nix-nvim.packages.${stdenv.hostPlatform.system}.nvim
   ];
 
@@ -63,5 +65,5 @@
   ];
   kanata-sys.enable = true;
   nvidia-drivers.enable = true;
-  fish-foot.enable = true;
+  fish.enable = true;
 }
