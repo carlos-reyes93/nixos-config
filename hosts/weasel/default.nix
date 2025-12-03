@@ -4,10 +4,10 @@
   pkgs,
   inputs,
   ...
-}: {
+}:
+{
   imports = [
     ./../../modules/system/nixos/wsl.nix
-    ./../../modules/system/kanata.nix
     ./../../modules/user/shells/fish.nix
   ];
 
@@ -25,7 +25,5 @@
     "nix-command"
     "flakes"
   ];
-  kanata-sys.enable = true;
-  nvidia-drivers.enable = false;
   fish.enable = true;
 }
