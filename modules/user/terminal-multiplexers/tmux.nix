@@ -7,7 +7,6 @@
     prefix = "C-a";
     keyMode = "vi";
     plugins = with pkgs; [
-      tmuxPlugins.vim-tmux-navigator
       tmuxPlugins.catppuccin
     ];
     extraConfig = ''
@@ -67,6 +66,26 @@
 
       set -g window-status-current-format " #I#{?#{!=:#{window_name},Window},: #W,} "
       set -g window-status-current-style "bg=#{@thm_peach},fg=#{@thm_bg},bold"
+
+      # Better pane navigation
+      version_pat='s/^tmux[^0-9]*([.0-9]+).*/\1/p'
+
+      is_vim="ps -o state= -o comm= -t '#{pane_tty}' \
+      | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?(view|n?vim?x?)(diff)?$'"
+      bind-key -n M-h if-shell "$is_vim" "send-keys M-h" "select-pane -L"
+      bind-key -n M-j if-shell "$is_vim" "send-keys M-j" "select-pane -D"
+      bind-key -n M-k if-shell "$is_vim" "send-keys M-k" "select-pane -U"
+      bind-key -n M-l if-shell "$is_vim" "send-keys M-l" "select-pane -R"
+
+      if-shell -b '[ "$(tmux -V | cut -d" " -f2 | awk -F. "{print (\$1 >= 3)}")" = 1 ]' \
+        "bind-key -n 'M-\\' if-shell \"$is_vim\" 'send-keys M-\\\\' 'select-pane -l'" \
+          "bind-key -n 'M-\\' if-shell \"$is_vim\" 'send-keys M-\\' 'select-pane -l'"
+
+      bind-key -T copy-mode-vi M-h select-pane -L
+      bind-key -T copy-mode-vi M-j select-pane -D
+      bind-key -T copy-mode-vi M-k select-pane -U
+      bind-key -T copy-mode-vi M-l select-pane -R
+      bind-key -T copy-mode-vi M-\\ select-pane -l
     '';
   };
   }
