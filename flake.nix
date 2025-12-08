@@ -5,6 +5,10 @@
     home-manager.url = "github:nix-community/home-manager/master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nix-nvim.url = "github:carlos-reyes93/nix-nvim";
+    hyprland.url = "github:hyprwm/Hyprland";
+    matugen.url = "github:InioX/Matugen";
+    apple-fonts.url = "github:Lyndeno/apple-fonts.nix";
+    apple-fonts.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = {

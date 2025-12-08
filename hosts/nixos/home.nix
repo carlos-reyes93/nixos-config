@@ -1,5 +1,6 @@
 {
   config,
+  inputs,
   lib,
   pkgs,
   ...
@@ -30,7 +31,9 @@ in {
 
     home.packages = [
       pkgs.nerd-fonts.fira-code
+      pkgs.nerd-fonts.iosevka
       pkgs.fish
+      pkgs.neofetch
     ];
 
     home.sessionVariables = {

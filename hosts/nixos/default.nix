@@ -3,7 +3,6 @@
   inputs,
   lib,
   pkgs,
-  nixosHostSettings,
   ...
 }: {
   imports = [
@@ -11,6 +10,7 @@
     ./../../modules/system/kanata.nix
     ./../../modules/system/hardware/nvidia
     ./../../modules/user/shells/fish.nix
+    ./../../modules/system/hyprland.nix
   ];
 
   boot.loader.systemd-boot.enable = true;
@@ -18,6 +18,12 @@
   nixpkgs.config.allowUnfree = true;
   networking.hostName = "nixos";
   networking.networkmanager.enable = true;
+
+  nix.settings = {
+    substituters = ["https://hyprland.cachix.org"];
+    trusted-substituters = ["https://hyprland.cachix.org"];
+    trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
+  };
 
   time.timeZone = "America/Mexico_City";
 
@@ -36,10 +42,9 @@
   };
 
   programs.firefox.enable = true;
-  programs.hyprland = {
-    enable = true;
-    xwayland.enable = true;
-  };
+  fonts.packages = with pkgs; [
+    inputs.apple-fonts.packages.${pkg.system}.sf-pro-nerd
+  ];
 
   environment.systemPackages = with pkgs; [
     git
@@ -47,10 +52,11 @@
     wget
     kitty
     waybar
-    discord
+    vesktop
     wofi
     hyprpaper
     foot
+    pavucontrol
     inputs.nix-nvim.packages.${stdenv.hostPlatform.system}.nvim
   ];
 
