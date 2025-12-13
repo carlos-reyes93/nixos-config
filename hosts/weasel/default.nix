@@ -4,8 +4,7 @@
   pkgs,
   inputs,
   ...
-}:
-{
+}: {
   imports = [
     ./../../modules/system/nixos/wsl.nix
     ./../../modules/user/shells/fish.nix
@@ -26,4 +25,5 @@
     "flakes"
   ];
   fish.enable = true;
+  programs.nix-ld.enable = true;
 }

@@ -32,6 +32,8 @@ in {
     home.packages = [
       pkgs.nerd-fonts.fira-code
       pkgs.fish
+      pkgs.lazygit
+      pkgs.fzf
     ];
 
     home.sessionVariables = {
