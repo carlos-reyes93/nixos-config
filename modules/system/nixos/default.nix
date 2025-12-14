@@ -1,9 +1,4 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
-}: let
+{...}: let
   hostName = "nixos";
 in {
   boot.loader.systemd-boot.enable = true;
@@ -13,4 +8,5 @@ in {
   networking.networkmanager.enable = true;
 
   time.timeZone = "America/Mexico_City";
+  programs.nix-ld.enable = true;
 }

@@ -1,23 +1,17 @@
 {
-  config,
   inputs,
-  lib,
   pkgs,
   ...
 }: {
   imports = [
     ./hardware-configuration.nix
+    ./../../modules/system/nixos/default.nix
     ./../../modules/system/kanata.nix
     ./../../modules/system/hardware/nvidia
     ./../../modules/user/shells/fish.nix
     ./../../modules/system/hyprland.nix
+    ./../../modules/system/greetd.nix
   ];
-
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  nixpkgs.config.allowUnfree = true;
-  networking.hostName = "nixos";
-  networking.networkmanager.enable = true;
 
   nix.settings = {
     substituters = ["https://hyprland.cachix.org"];
@@ -25,7 +19,6 @@
     trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
   };
 
-  time.timeZone = "America/Mexico_City";
 
   services.getty.autologinUser = "charly";
   users.groups.uinput = {};

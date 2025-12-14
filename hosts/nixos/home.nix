@@ -5,11 +5,12 @@
   pkgs,
   ...
 }: let
-  dotfiles = config.lib.file.mkOutOfStoreSymlink config.home.mutableFile."dotfiles".path;
-  nix-nvim = config.lib.file.mkOutOfStoreSymlink config.home.mutableFile."nix-nvim".path;
+  dotfiles = config.lib.file.mkOutOfStoreSymlink config.home.mutableFile.files."dotfiles".path;
+  nix-nvim = config.lib.file.mkOutOfStoreSymlink config.home.mutableFile.files."nix-nvim".path;
 in {
   imports = [
     ./../../modules/user/terminal-multiplexers/tmux.nix
+    ./../../modules/home-manager/direnv.nix
   ];
   config = {
     home.username = "charly";
@@ -17,13 +18,18 @@ in {
     home.enableNixpkgsReleaseCheck = false;
     fetch-mutable-files.enable = true;
     home.mutableFile = {
-      "dotfiles" = {
-        url = "https://github.com/carlos-reyes93/dotfiles.git";
-        type = "git";
-      };
-      "nix-nvim" = {
-        url = "https://github.com/carlos-reyes93/nix-nvim.git";
-        type = "git";
+      baseDir = "${config.home.homeDirectory}/repos";
+      files = {
+        "dotfiles" = {
+          url = "https://github.com/carlos-reyes93/dotfiles.git";
+          type = "git";
+          path = "repos";
+        };
+        "nix-nvim" = {
+          url = "https://github.com/carlos-reyes93/nix-nvim.git";
+          type = "git";
+          path = "repos";
+        };
       };
     };
 
@@ -34,6 +40,7 @@ in {
       pkgs.nerd-fonts.iosevka
       pkgs.fish
       pkgs.neofetch
+      pkgs.fzf
     ];
 
     home.sessionVariables = {
