@@ -23,12 +23,12 @@ in {
         "dotfiles" = {
           url = "https://github.com/carlos-reyes93/dotfiles.git";
           type = "git";
-          path = "repos";
+          path = "dotfiles";
         };
         "nix-nvim" = {
           url = "https://github.com/carlos-reyes93/nix-nvim.git";
           type = "git";
-          path = "repos";
+          path = "nix-nvim";
         };
       };
     };
