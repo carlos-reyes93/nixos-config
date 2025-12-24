@@ -11,6 +11,7 @@
     ./../../modules/user/shells/fish.nix
     ./../../modules/system/hyprland.nix
     ./../../modules/system/greetd.nix
+    ./../../modules/system/steam.nix
   ];
 
   nix.settings = {
