@@ -74,4 +74,5 @@
   nvidia-drivers.enable = true;
   fish.enable = true;
   vial-ch.enable = true;
+  charly.hyprland.enable = true;
 }
