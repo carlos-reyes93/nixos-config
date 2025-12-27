@@ -3,11 +3,18 @@
   lib,
   pkgs,
   ...
-}: {
-  options = {
-    vial-ch.enable = lib.mkEnableOption "enable VIAL system module";
+}: let
+  inherit (lib) mkOption mkIf types;
+  mod = "vial";
+  cfg = config.charly.${mod};
+in 
+{
+  options.charly.${mod}.enable = mkOption {
+    description = mod;
+    type = types.bool;
+    default = false;
   };
-  config = lib.mkIf config.vial-ch.enable {
+  config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [vial];
     services.udev.packages = with pkgs; [vial];
   };

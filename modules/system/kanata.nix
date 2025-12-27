@@ -3,11 +3,17 @@
   lib,
   pkgs,
   ...
-}: {
-  options = {
-    kanata-sys.enable = lib.mkEnableOption "enable Kanata system module";
+}: let
+  inherit (lib) mkOption mkIf types;
+  mod = "kanata";
+  cfg = config.charly.${mod};
+in {
+  options.charly.${mod}.enable = mkOption {
+    description = mod;
+    type = types.bool;
+    default = false;
   };
-  config = lib.mkIf config.kanata-sys.enable {
+  config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [kanata];
     boot.kernelModules = ["uinput"];
     hardware.uinput.enable = true;

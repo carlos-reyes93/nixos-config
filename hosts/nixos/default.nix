@@ -11,7 +11,7 @@
     ./../../modules/user/shells/fish.nix
     ./../../modules/system/hyprland.nix
     ./../../modules/system/greetd.nix
-    ./../../modules/system/steam.nix
+    ./../../modules/system/gaming/default.nix
     ./../../modules/system/vial.nix
     inputs.noctalia.nixosModules.default
   ];
@@ -54,7 +54,6 @@
     foot
     pavucontrol
     inputs.nix-nvim.packages.${stdenv.hostPlatform.system}.nvim
-    vial
   ];
 
   services.noctalia-shell = { 
@@ -70,9 +69,10 @@
     "nix-command"
     "flakes"
   ];
-  kanata-sys.enable = false;
+  charly.kanata.enable = false;
   nvidia-drivers.enable = true;
   fish.enable = true;
-  vial-ch.enable = true;
+  charly.gaming.enable = true;
+  charly.vial.enable = true;
   charly.hyprland.enable = true;
 }
