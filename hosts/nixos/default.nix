@@ -9,8 +9,7 @@
     ./../../modules/system/kanata.nix
     ./../../modules/system/hardware/nvidia
     ./../../modules/user/shells/fish.nix
-    ./../../modules/system/hyprland.nix
-    ./../../modules/system/greetd.nix
+    ./../../modules/system/wms/hyprland/default.nix
     ./../../modules/system/gaming/default.nix
     ./../../modules/system/vial.nix
     inputs.noctalia.nixosModules.default
@@ -46,19 +45,12 @@
     git
     vim
     wget
-    kitty
-    waybar
     vesktop
-    wofi
-    hyprpaper
     foot
     pavucontrol
     inputs.nix-nvim.packages.${stdenv.hostPlatform.system}.nvim
   ];
 
-  services.noctalia-shell = { 
-    enable = true;
-  };
 
   services.udev.extraRules = ''
     KERNEL=="uinput", MODE="0660", GROUP="uinput", OPTIONS+="static_node=uinput"

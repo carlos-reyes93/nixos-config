@@ -18,21 +18,21 @@ in {
       };
     };
   };
+  imports = [
+    ./greetd.nix
+  ];
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
       kitty
       waybar
-      wofi
-      rofi
+      hyprpaper
       fuzzel
       swww
       inputs.matugen.packages.${system}.default
     ];
     programs.hyprland = {
       enable = true;
-      # set the flake package
       package = inputs.hyprland.packages.${system}.hyprland;
-      # make sure to also set the portal package, so that they are in sync
       portalPackage = inputs.hyprland.packages.${system}.xdg-desktop-portal-hyprland;
       xwayland.enable = true;
     };
@@ -51,6 +51,11 @@ in {
         GDK_BACKEND = "wayland";
         WLR_NO_HARDWARE_CURSORS = "1";
       };
+    };
+
+    charly.autologin.enable = true;
+    services.noctalia-shell = {
+      enable = true;
     };
   };
 }
