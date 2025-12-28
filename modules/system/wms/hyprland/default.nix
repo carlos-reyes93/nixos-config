@@ -29,6 +29,7 @@ in {
       fuzzel
       swww
       inputs.matugen.packages.${system}.default
+      inputs.rose-pine-hyprcursor.packages.${stdenv.hostPlatform.system}.default
     ];
     programs.hyprland = {
       enable = true;
