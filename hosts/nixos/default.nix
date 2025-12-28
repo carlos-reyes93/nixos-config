@@ -36,7 +36,6 @@
     ];
   };
 
-  programs.firefox.enable = true;
   fonts.packages = with pkgs; [
     inputs.apple-fonts.packages.${pkg.system}.sf-pro-nerd
   ];

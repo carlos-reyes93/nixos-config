@@ -11,6 +11,7 @@ in {
   imports = [
     ./../../modules/user/terminal-multiplexers/tmux.nix
     ./../../modules/home-manager/direnv.nix
+    ./../../modules/home-manager/firefox.nix
   ];
   config = {
     home.username = "charly";

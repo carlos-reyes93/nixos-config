@@ -55,8 +55,5 @@ in {
     };
 
     charly.autologin.enable = true;
-    services.noctalia-shell = {
-      enable = true;
-    };
   };
 }
