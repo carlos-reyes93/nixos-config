@@ -20,6 +20,7 @@ in {
   };
   imports = [
     ./greetd.nix
+    ./noctalia.nix 
   ];
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
@@ -55,5 +56,6 @@ in {
     };
 
     charly.autologin.enable = true;
+    charly.noctalia-shell.enable = true;
   };
 }
