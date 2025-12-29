@@ -18,16 +18,12 @@ in {
     default = false;
   };
   config = mkIf cfg.enable {
-    hardware.graphics = {
-      enable = true;
-    };
 
     programs.steam.enable = true;
     programs.gamemode.enable = true;
 
     environment.systemPackages = with pkgs; [mangohud protonup-qt bottles heroic];
 
-    services.xserver.videoDrivers = ["nvidia"];
     charly.lutris.enable = true;
   };
 }

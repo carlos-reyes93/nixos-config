@@ -61,7 +61,7 @@
     "flakes"
   ];
   charly.kanata.enable = false;
-  nvidia-drivers.enable = true;
+  charly.nvidia.enable = true;
   fish.enable = true;
   charly.gaming.enable = true;
   charly.vial.enable = true;
