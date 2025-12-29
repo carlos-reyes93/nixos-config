@@ -27,7 +27,6 @@
         bitwarden
         catppuccin-mocha-mauve
       ];
-      bookmarks = {};
       settings = {
         "browser.startup.homepage" = "about:home";
 

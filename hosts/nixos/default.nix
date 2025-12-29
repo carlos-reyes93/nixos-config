@@ -12,6 +12,7 @@
     ./../../modules/system/wms/hyprland/default.nix
     ./../../modules/system/gaming/default.nix
     ./../../modules/system/vial.nix
+    ./../../modules/desktop/commons/default.nix
     inputs.noctalia.nixosModules.default
   ];
 
@@ -35,10 +36,6 @@
       tree
     ];
   };
-
-  fonts.packages = with pkgs; [
-    inputs.apple-fonts.packages.${pkg.system}.sf-pro-nerd
-  ];
 
   environment.systemPackages = with pkgs; [
     git

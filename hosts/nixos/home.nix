@@ -36,12 +36,13 @@ in {
 
     home.stateVersion = "25.11";
 
-    home.packages = [
+    home.packages = with pkgs; [
       pkgs.nerd-fonts.fira-code
       pkgs.nerd-fonts.iosevka
       pkgs.fish
       pkgs.neofetch
       pkgs.fzf
+      inputs.apple-fonts.packages.${stdenv.hostPlatform.system}.sf-pro-nerd
     ];
 
     home.sessionVariables = {

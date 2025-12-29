@@ -25,7 +25,6 @@
   };
 
   outputs = {
-    self,
     nixpkgs,
     nixos-wsl,
     home-manager,
