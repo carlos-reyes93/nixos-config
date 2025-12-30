@@ -6,7 +6,6 @@
 }: let
   cfg = config.home.mutableFile.files;
   file = baseDir: {
-    config,
     name,
     ...
   }: {
@@ -86,27 +85,6 @@ in {
         '';
       };
     };
-    # home = {
-    #   mutableFile = lib.mkOption {
-    #     type = with lib.types; attrsOf (submodule (file config.home.homeDirectory));
-    #     default = { };
-    #     description = lib.mkDoc ''
-    #       An attribute set of mutable files and directories to be fetched into the
-    #       home directory.
-    #     '';
-    #     example = lib.literalExpression ''
-    #       "''${config.xdg.userDirs.documents}/dotfiles" = {
-    #         url = "https://github.com/foo-dogsquared/dotfiles.git";
-    #         type = "git";
-    #       };
-    #
-    #       "''${config.xdg.userDirs.documents}/top-secret" = {
-    #         url = "https://example.com/file.zip";
-    #         type = "fetch";
-    #       };
-    #     '';
-    #   };
-    # };
   };
 
   config = lib.mkIf config.fetch-mutable-files.enable {

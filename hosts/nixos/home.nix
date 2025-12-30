@@ -12,6 +12,7 @@ in {
     ./../../modules/user/terminal-multiplexers/tmux.nix
     ./../../modules/home-manager/direnv.nix
     ./../../modules/home-manager/firefox.nix
+    ./../../modules/home-manager/fish.nix
   ];
   config = {
     home.username = "charly";
@@ -51,10 +52,6 @@ in {
 
     programs.home-manager.enable = true;
 
-    programs.starship = {
-      enable = true;
-    };
-
     programs.git = {
       enable = true;
       settings = {
@@ -67,9 +64,11 @@ in {
 
     xdg.configFile = {
       nvim.source = "${nix-nvim}";
-      fish.source = "${dotfiles}/shell/fish";
-      "starship.toml".source = "${dotfiles}/shell/starship/starship.toml";
+      # fish.source = "${dotfiles}/shell/fish";
+      # "starship.toml".source = "${dotfiles}/shell/starship/starship.toml";
       foot.source = "${dotfiles}/programs/foot";
     };
+
+    charly.fish.enable = true;
   };
 }

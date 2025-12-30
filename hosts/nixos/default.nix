@@ -8,7 +8,7 @@
     ./../../modules/system/nixos/default.nix
     ./../../modules/system/kanata.nix
     ./../../modules/system/hardware/nvidia
-    ./../../modules/user/shells/fish.nix
+    # ./../../modules/user/shells/fish.nix
     ./../../modules/system/wms/hyprland/default.nix
     ./../../modules/system/gaming/default.nix
     ./../../modules/system/vial.nix
@@ -59,8 +59,9 @@
   ];
   charly.kanata.enable = false;
   charly.nvidia.enable = true;
-  fish.enable = true;
   charly.gaming.enable = true;
   charly.vial.enable = true;
   charly.hyprland.enable = true;
+  users.defaultUserShell = pkgs.fish;
+  programs.fish.enable = true;
 }
