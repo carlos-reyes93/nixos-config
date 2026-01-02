@@ -4,26 +4,34 @@
   pkgs,
   ...
 }: let
-  dotfiles = config.lib.file.mkOutOfStoreSymlink config.home.mutableFile."dotfiles".path;
-  nix-nvim = config.lib.file.mkOutOfStoreSymlink config.home.mutableFile."nix-nvim".path;
+  nix-nvim = config.lib.file.mkOutOfStoreSymlink config.home.mutableFile.files."nix-nvim".path;
 in {
   imports = [
     ./../../modules/user/terminal-multiplexers/tmux.nix
     ./../../modules/home-manager/direnv.nix
+    ./../../modules/home-manager/fish.nix
+    ./../../modules/home-manager/lazygit.nix
+    
   ];
   config = {
     home.username = "charly";
     home.homeDirectory = "/home/charly";
     home.enableNixpkgsReleaseCheck = false;
     fetch-mutable-files.enable = false;
+
     home.mutableFile = {
-      "dotfiles" = {
-        url = "https://github.com/carlos-reyes93/dotfiles.git";
-        type = "git";
-      };
-      "nix-nvim" = {
-        url = "https://github.com/carlos-reyes93/nix-nvim.git";
-        type = "git";
+      baseDir = "${config.home.homeDirectory}/repos";
+      files = {
+        "dotfiles" = {
+          url = "https://github.com/carlos-reyes93/dotfiles.git";
+          type = "git";
+          path = "dotfiles";
+        };
+        "nix-nvim" = {
+          url = "https://github.com/carlos-reyes93/nix-nvim.git";
+          type = "git";
+          path = "nix-nvim";
+        };
       };
     };
 
@@ -31,7 +39,6 @@ in {
 
     home.packages = [
       pkgs.nerd-fonts.fira-code
-      pkgs.fish
       pkgs.lazygit
       pkgs.fzf
     ];
@@ -58,8 +65,8 @@ in {
 
     xdg.configFile = {
       nvim.source = "${nix-nvim}";
-      fish.source = "${dotfiles}/shell/fish";
-      "starship.toml".source = "${dotfiles}/shell/starship/starship.toml";
     };
+   
+    charly.fish.enable = true;
   };
 }

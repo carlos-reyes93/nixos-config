@@ -44,9 +44,23 @@
           inherit inputs;
         };
         inherit system;
-        modules = [
-          nixos-wsl.nixosModules.default
+        modules = with inputs; [
           ./hosts/weasel/default.nix
+          nixos-wsl.nixosModules.default
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.charly = import ./hosts/weasel/home.nix;
+            home-manager.backupFileExtension = "bak";
+            home-manager.sharedModules = [
+              ./modules/home-manager/fetch-mutable-files.nix
+              ];
+            home-manager.extraSpecialArgs = {
+              inherit inputs;
+            };
+          }
+          stylix.nixosModules.stylix
         ];
       };
       nixos = lib.nixosSystem {
@@ -72,25 +86,6 @@
           stylix.nixosModules.stylix
         ];
       };
-    };
-    homeConfigurations = {
-      "charly@weasel" = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        modules = [
-          ./modules/home-manager/fetch-mutable-files.nix
-          ./hosts/weasel/home.nix
-        ];
-      };
-      # "charly@nixos" = home-manager.lib.homeManagerConfiguration {
-      #   inherit pkgs;
-      #   extraSpecialArgs = {
-      #     inherit inputs;
-      #   };
-      #   modules = [
-      #     ./modules/home-manager/fetch-mutable-files.nix
-      #     ./hosts/nixos/home.nix
-      #   ];
-      # };
     };
   };
 }
