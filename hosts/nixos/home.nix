@@ -13,6 +13,7 @@ in {
     ./../../modules/home-manager/direnv.nix
     ./../../modules/home-manager/firefox.nix
     ./../../modules/home-manager/fish.nix
+    ./../../modules/home-manager/lazygit.nix
   ];
   config = {
     home.username = "charly";

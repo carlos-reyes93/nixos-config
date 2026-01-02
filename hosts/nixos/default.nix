@@ -8,11 +8,11 @@
     ./../../modules/system/nixos/default.nix
     ./../../modules/system/kanata.nix
     ./../../modules/system/hardware/nvidia
-    # ./../../modules/user/shells/fish.nix
     ./../../modules/system/wms/hyprland/default.nix
     ./../../modules/system/gaming/default.nix
     ./../../modules/system/vial.nix
     ./../../modules/desktop/commons/default.nix
+    ./../../modules/desktop/stylix.nix
     inputs.noctalia.nixosModules.default
   ];
 
