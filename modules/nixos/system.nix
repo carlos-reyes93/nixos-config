@@ -4,7 +4,7 @@
     system = {
       autoUpgrade = {
         enable = lib.mkDefault true;
-        flake = "github:carlos-reyes/nixos-config";
+        flake = "github:carlos-reyes93/nixos-config";
         dates = "01/04:00";
         randomizedDelaySec = "15min";
       };

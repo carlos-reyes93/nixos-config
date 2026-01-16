@@ -755,11 +755,11 @@
         "nixpkgs": "nixpkgs_4"
       },
       "locked": {
-        "lastModified": 1766504244,
-        "narHash": "sha256-a/PePzJHs3FhCmJRt2ap2WfQYYna+Nv1FqEmVyQyOOc=",
+        "lastModified": 1768447477,
+        "narHash": "sha256-eSupU+iLDwDrwXmsJZr3UlZAPzgMKMixjFEpxY81fFI=",
         "owner": "carlos-reyes93",
         "repo": "nix-nvim",
-        "rev": "f699b4895c48a96eaeb99301a51258c85041c355",
+        "rev": "c54591d97e3ea2c0e8a58c695a3fc41d83421c9e",
         "type": "github"
       },
       "original": {

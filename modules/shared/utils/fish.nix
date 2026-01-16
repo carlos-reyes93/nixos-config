@@ -6,6 +6,7 @@
 }: {
   config = {
     programs.fish.enable = true;
+    users.defaultUserShell = pkgs.fish;
 
     home-manager.users.${config.charly.user.name} = {
       programs.fish.enable = true;

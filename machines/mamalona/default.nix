@@ -17,6 +17,7 @@
     # };
     hardware = {
       nvidia.enable = true;
+      bluetooth.enable = true;
     };
     graphical = {
       enable = true;

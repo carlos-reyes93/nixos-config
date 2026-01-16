@@ -44,13 +44,12 @@
           };
         };
         colorSchemes.predefinedScheme = "Monochrome";
-        # general = {
-        #   avatarImage = "/home/drfoobar/.face";
-        #   radiusRatio = 0.2;
-        # };
         location = {
           monthBeforeDay = true;
           name = "Marseille, France";
+        };
+        wallpaper = {
+          enabled = false;
         };
       };
     };
