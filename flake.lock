@@ -903,6 +903,11 @@
         "owner": "carlos-reyes93",
         "repo": "nix-nvim",
         "rev": "a8b2d95fb2812f181b472c2d4476d326d20f4e0d",
+        "lastModified": 1769097113,
+        "narHash": "sha256-CwglAxibbStv6E5IW6ONyGoTNcqee29abcRL+R2rqBQ=",
+        "owner": "carlos-reyes93",
+        "repo": "nix-nvim",
+        "rev": "e228fa034f37b77c733c539d0d1f6e3e21838985",
         "type": "github"
       },
       "original": {
@@ -932,6 +937,7 @@
         "nixpkgs": [
           "nixpkgs"
         ]
+        "nixpkgs": "nixpkgs_7"
       },
       "locked": {
         "lastModified": 1765841014,
@@ -1030,6 +1036,36 @@
         "narHash": "sha256-Z63xl5Scj3Y/zRBPAWq1eT68n2wBWGCIEF4waZ0bQBE=",
         "owner": "NixOS",
         "repo": "nixpkgs",
+        "rev": "4bc9c909d9ac828a039f288cf872d16d38185db8",
+        "type": "github"
+      },
+      "original": {
+        "id": "nixpkgs",
+        "type": "indirect"
+      }
+    },
+    "nixpkgs_6": {
+      "locked": {
+        "lastModified": 1745377448,
+        "narHash": "sha256-jhZDfXVKdD7TSEGgzFJQvEEZ2K65UMiqW5YJ2aIqxMA=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "507b63021ada5fee621b6ca371c4fca9ca46f52c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixpkgs-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_7": {
+      "locked": {
+        "lastModified": 1764230294,
+        "narHash": "sha256-Z63xl5Scj3Y/zRBPAWq1eT68n2wBWGCIEF4waZ0bQBE=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
         "rev": "0d59e0290eefe0f12512043842d7096c4070f30e",
         "type": "github"
       },
@@ -1040,7 +1076,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_6": {
+    "nixpkgs_8": {
       "locked": {
         "lastModified": 1764642553,
         "narHash": "sha256-mvbFFzVBhVK1FjyPHZGMAKpNiqkr7k++xIwy+p/NQvA=",
@@ -1164,6 +1200,7 @@
         "nix-nvim": "nix-nvim",
         "nixos-wsl": "nixos-wsl",
         "nixpkgs": "nixpkgs_7",
+        "nixpkgs": "nixpkgs_8",
         "noctalia": "noctalia",
         "rose-pine-hyprcursor": "rose-pine-hyprcursor",
         "stylix": "stylix"
