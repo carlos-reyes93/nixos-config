@@ -36,6 +36,8 @@
           obsidian.enable = lib.mkDefault true;
           vial.enable = lib.mkDefault true;
           foot.enable = lib.mkDefault true;
+          antimicrox.enable = lib.mkDefault true;
+          vesktop.enable = lib.mkDefault true;
         };
       };
     };

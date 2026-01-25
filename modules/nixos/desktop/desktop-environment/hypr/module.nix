@@ -19,8 +19,8 @@ in {
     };
   };
   imports = [
-    ./greetd.nix
-    ./noctalia.nix
+    ./../greetd.nix
+    ./../noctalia.nix
   ];
   config = mkIf cfg.enable {
     nix.settings = {
@@ -36,7 +36,7 @@ in {
       fuzzel
       swww
       inputs.matugen.packages.${system}.default
-      inputs.rose-pine-hyprcursor.packages.${stdenv.hostPlatform.system}.default
+      inputs.rose-pine-hyprcursor.packages.${system}.default
     ];
     programs.hyprland = {
       enable = true;
