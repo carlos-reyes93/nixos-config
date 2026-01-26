@@ -62,19 +62,24 @@
       home-manager.nixosModules.home-manager
       catppuccin.nixosModules.catppuccin
       nixos-wsl.nixosModules.default
-      ./modules/nixos
     ];
+    desktopModules = [./modules/nixos];
   in {
     nixosConfigurations = {
       weasel =
-        lib.nixosSystem {
+        nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit inputs outputs;
+            lib = lib "x86_64-linux";
+          };
+          modules = sharedModules ++ nixosModules ++ [./machines/weasel/default.nix];
         };
       mamalona = nixpkgs.lib.nixosSystem {
         specialArgs = {
           inherit inputs outputs;
           lib = lib "x86_64-linux";
         };
-        modules = sharedModules ++ nixosModules ++ [./machines/mamalona/default.nix];
+        modules = sharedModules ++ nixosModules ++ desktopModules ++ [./machines/mamalona/default.nix];
       };
     };
   };

@@ -10,7 +10,6 @@
   ];
   options.charly.graphical = {
     enable = lib.mkEnableOption "graphical environment";
-    laptop = lib.mkEnableOption "laptop configuration";
   };
 
   # TODO: Create a nicer options structure
