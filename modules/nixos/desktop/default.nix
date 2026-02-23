@@ -7,9 +7,11 @@
     ./applications
     ./desktop-environment
     ./gaming
+    ./sound
   ];
   options.charly.graphical = {
     enable = lib.mkEnableOption "graphical environment";
+    laptop = lib.mkEnableOption "laptop configuration";
   };
 
   # TODO: Create a nicer options structure
@@ -25,7 +27,7 @@
         # fuzzel.enable = lib.mkDefault true;
         # key_management.enable = lib.mkDefault true;
         # theme.enable = lib.mkDefault true;
-        # sound.enable = lib.mkDefault true;
+        sound.enable = lib.mkDefault true;
         gaming = {
           steam.enable = lib.mkDefault true;
           lutris.enable = lib.mkDefault true;
@@ -37,6 +39,8 @@
           foot.enable = lib.mkDefault true;
           antimicrox.enable = lib.mkDefault true;
           vesktop.enable = lib.mkDefault true;
+          torrent.enable = lib.mkDefault true;
+          obs.enable = lib.mkDefault true;
         };
       };
     };

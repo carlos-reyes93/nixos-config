@@ -33,10 +33,14 @@
     environment.systemPackages = with pkgs; [
       lshw
       iproute2
+      piper
     ];
 
     services = {
       fwupd = {
+        enable = true;
+      };
+      ratbagd = {
         enable = true;
       };
     };
@@ -44,5 +48,7 @@
     i18n = {
       defaultLocale = "en_US.UTF-8";
     };
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
   };
 }

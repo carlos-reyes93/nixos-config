@@ -7,6 +7,7 @@
   options.charly.graphical.gaming.lutris.enable = lib.mkEnableOption "lutris";
 
   config = lib.mkIf config.charly.graphical.gaming.lutris.enable {
+    programs.nix-ld.enable = true;
     environment.systemPackages = with pkgs; [
       (lutris.override {
         extraPkgs = pkgs: let
@@ -19,7 +20,6 @@
             };
           };
         in [
-          # Tibia
           brotli
           nspr
           nss
@@ -27,10 +27,22 @@
           libGL
           libGLU
           libevent
-          xorg.libXdamage
-          xorg.libxkbfile
           openssl
           libxml2_13
+
+          # X11 & XCB Suite (CRITICAL for Qt6 / Tibia 13+)
+          xorg.libX11
+          xorg.libXdamage
+          xorg.libxkbfile
+          xorg.libxcb
+          xorg.xcbutil
+          xorg.xcbutilwm
+          xorg.xcbutilimage
+          xorg.xcbutilkeysyms
+          xorg.xcbutilrenderutil
+          xorg.xcbutilcursor
+          xorg.libXi
+          xorg.libXrender
         ];
       })
     ];

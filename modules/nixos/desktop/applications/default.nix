@@ -6,5 +6,7 @@
     ./vial.nix
     ./vesktop.nix
     ./antimicrox.nix
+    ./qbit.nix
+    ./obs.nix
   ];
 }

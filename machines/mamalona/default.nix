@@ -4,6 +4,11 @@
   networking = {
     hostName = "mamalona";
     nameservers = ["1.1.1.1" "1.0.0.1"];
+    firewall = {
+      enable = true;
+      allowedTCPPorts = [ 34585 ];
+      allowedUDPPorts = [ 34585 ];
+    };
   };
 
   charly = {

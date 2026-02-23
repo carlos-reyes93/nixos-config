@@ -1,3 +1,3 @@
 {...}: {
-  imports = [./hypr];
+  imports = [./hypr ./usb.nix];
 }
