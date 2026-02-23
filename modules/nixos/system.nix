@@ -1,5 +1,9 @@
-{ config, lib, pkgs, ... }:
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   config = {
     system = {
       autoUpgrade = {
@@ -19,7 +23,7 @@
         enable = true;
         extraRules = [
           {
-            users = [ config.charly.user.name ];
+            users = [config.charly.user.name];
             noPass = true;
           }
         ];
@@ -48,7 +52,5 @@
     i18n = {
       defaultLocale = "en_US.UTF-8";
     };
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
   };
 }

@@ -6,10 +6,13 @@
     nameservers = ["1.1.1.1" "1.0.0.1"];
     firewall = {
       enable = true;
-      allowedTCPPorts = [ 34585 ];
-      allowedUDPPorts = [ 34585 ];
+      allowedTCPPorts = [34585];
+      allowedUDPPorts = [34585];
     };
   };
+
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
 
   charly = {
     stateVersion = "25.05";

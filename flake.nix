@@ -66,9 +66,13 @@
     ];
   in {
     nixosConfigurations = {
-      weasel =
-        lib.nixosSystem {
+      weasel = nixpkgs.lib.nixosSystem {
+        specialArgs = {
+          inherit inputs outputs;
+          lib = lib "x86_64-linux";
         };
+        modules = sharedModules ++ nixosModules ++ [./machines/weasel/default.nix];
+      };
       mamalona = nixpkgs.lib.nixosSystem {
         specialArgs = {
           inherit inputs outputs;
