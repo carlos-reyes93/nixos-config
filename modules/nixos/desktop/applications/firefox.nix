@@ -32,6 +32,7 @@
             ublock-origin
             bitwarden
             catppuccin-mocha-mauve
+            yomitan
           ];
           settings = {
             "browser.startup.homepage" = "about:home";

@@ -5,6 +5,11 @@
   ...
 }: {
   config = {
+    fileSystems."/mnt/data" = {
+      device = "/dev/disk/by-uuid/F200BF5C00BF270F";
+      fsType = "ntfs";
+      options = ["nofail"];
+    };
     system = {
       autoUpgrade = {
         enable = lib.mkDefault true;
@@ -52,5 +57,7 @@
     i18n = {
       defaultLocale = "en_US.UTF-8";
     };
+    boot.loader.systemd-boot.enable = true;
+    boot.loader.efi.canTouchEfiVariables = true;
   };
 }

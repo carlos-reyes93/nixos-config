@@ -8,5 +8,7 @@
     ./antimicrox.nix
     ./qbit.nix
     ./obs.nix
+    ./spotify.nix
+    ./anki.nix
   ];
 }

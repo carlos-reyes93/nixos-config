@@ -41,6 +41,8 @@
           vesktop.enable = lib.mkDefault true;
           torrent.enable = lib.mkDefault true;
           obs.enable = lib.mkDefault true;
+          spotify.enable = lib.mkDefault true;
+          anki.enable = lib.mkDefault true;
         };
       };
     };
